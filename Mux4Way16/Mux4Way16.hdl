@@ -11,5 +11,10 @@ CHIP Mux4Way16 {
     OUT out[16];
 
     PARTS:
-   // Put you code here:
+    // Stage 1: Select between a and b, and between c and d
+    Mux16(a=a, b=b, sel=sel[0], out=abSelected);
+    Mux16(a=c, b=d, sel=sel[0], out=cdSelected);
+
+    // Stage 2: Select between the results of stage 1
+    Mux16(a=abSelected, b=cdSelected, sel=sel[1], out=out);
 }
