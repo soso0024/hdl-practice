@@ -7,6 +7,87 @@ CHIP Mux16 {
     OUT out[16];
 
     PARTS:
-    // Put you code here:
+    // NOT sel
+    Nand(a=sel, b=sel, out=notSel);
+
+    // For bit 0
+    Nand(a=a[0], b=notSel, out=w01);
+    Nand(a=b[0], b=sel, out=w02);
+    Nand(a=w01, b=w02, out=out[0]);
+
+    // For bit 1
+    Nand(a=a[1], b=notSel, out=w11);
+    Nand(a=b[1], b=sel, out=w12);
+    Nand(a=w11, b=w12, out=out[1]);
+
+    // For bit 2
+    Nand(a=a[2], b=notSel, out=w21);
+    Nand(a=b[2], b=sel, out=w22);
+    Nand(a=w21, b=w22, out=out[2]);
+
+    // For bit 3
+    Nand(a=a[3], b=notSel, out=w31);
+    Nand(a=b[3], b=sel, out=w32);
+    Nand(a=w31, b=w32, out=out[3]);
+
+    // For bit 4
+    Nand(a=a[4], b=notSel, out=w41);
+    Nand(a=b[4], b=sel, out=w42);
+    Nand(a=w41, b=w42, out=out[4]);
+
+    // For bit 5
+    Nand(a=a[5], b=notSel, out=w51);
+    Nand(a=b[5], b=sel, out=w52);
+    Nand(a=w51, b=w52, out=out[5]);
+
+    // For bit 6
+    Nand(a=a[6], b=notSel, out=w61);
+    Nand(a=b[6], b=sel, out=w62);
+    Nand(a=w61, b=w62, out=out[6]);
+
+    // For bit 7
+    Nand(a=a[7], b=notSel, out=w71);
+    Nand(a=b[7], b=sel, out=w72);
+    Nand(a=w71, b=w72, out=out[7]);
+
+    // For bit 8
+    Nand(a=a[8], b=notSel, out=w81);
+    Nand(a=b[8], b=sel, out=w82);
+    Nand(a=w81, b=w82, out=out[8]);
+
+    // For bit 9
+    Nand(a=a[9], b=notSel, out=w91);
+    Nand(a=b[9], b=sel, out=w92);
+    Nand(a=w91, b=w92, out=out[9]);
+
+    // For bit 10
+    Nand(a=a[10], b=notSel, out=w101);
+    Nand(a=b[10], b=sel, out=w102);
+    Nand(a=w101, b=w102, out=out[10]);
+
+    // For bit 11
+    Nand(a=a[11], b=notSel, out=w111);
+    Nand(a=b[11], b=sel, out=w112);
+    Nand(a=w111, b=w112, out=out[11]);
+
+    // For bit 12
+    Nand(a=a[12], b=notSel, out=w121);
+    Nand(a=b[12], b=sel, out=w122);
+    Nand(a=w121, b=w122, out=out[12]);
+
+    // For bit 13
+    Nand(a=a[13], b=notSel, out=w131);
+    Nand(a=b[13], b=sel, out=w132);
+    Nand(a=w131, b=w132, out=out[13]);
+
+    // For bit 14
+    Nand(a=a[14], b=notSel, out=w141);
+    Nand(a=b[14], b=sel, out=w142);
+    Nand(a=w141, b=w142, out=out[14]);
+
+    // For bit 15
+    Nand(a=a[15], b=notSel, out=w151);
+    Nand(a=b[15], b=sel, out=w152);
+    Nand(a=w151, b=w152, out=out[15]);
 }
 
