@@ -7,5 +7,7 @@ CHIP Or16 {
     OUT out[16];
 
     PARTS:
-   // Put you code here:
+    Nand16(a=a, b=a, out=aNanda);
+    Nand16(a=b, b=b, out=bNandb);
+    Nand16(a=aNanda, b=bNandb, out=out);
 }
