@@ -10,5 +10,31 @@ CHIP DMux {
     OUT a, b;
 
     PARTS:
-   // Put you code here:
+    // NOT sel
+    Nand(a=sel, b=sel, out=notsel);
+
+    // in AND notsel (for output a)
+    Nand(a=in, b=notsel, out=nanda1);
+    Nand(a=nanda1, b=nanda1, out=a);
+
+    // in AND sel (for output b)
+    Nand(a=in, b=sel, out=nandb1);
+    Nand(a=nandb1, b=nandb1, out=b);
 }
+
+
+/** MyMemo
+CHIP Demux {
+
+    IN in, sel;
+    OUT a, b;
+
+    PARTS:
+    Not (in=sel, out=notsel);
+    And (a=in, b=notsel, out=a);
+    And (a=sel, b=in, out=b);
+}
+
+ref: https://github.com/sciolizer/nand2tetris/blob/master/00/Demux.hdl
+
+*/
