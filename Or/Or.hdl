@@ -1,0 +1,7 @@
+CHIP Or {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+   // Put you code here:
+}
