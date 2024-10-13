@@ -6,6 +6,232 @@
  *       d if sel==11
  */
 
+
+CHIP Mux4Way16 {
+    IN a[16], b[16], c[16], d[16], sel[2];
+    OUT out[16];
+
+    PARTS:
+    // Generate NOT of selector bits
+    Nand(a=sel[0], b=sel[0], out=notSel0);
+    Nand(a=sel[1], b=sel[1], out=notSel1);
+
+    // Generate selection conditions
+    Nand(a=notSel1, b=notSel0, out=selA);
+    Nand(a=notSel1, b=sel[0], out=selB);
+    Nand(a=sel[1], b=notSel0, out=selC);
+    Nand(a=sel[1], b=sel[0], out=selD);
+
+    // Bit 0
+    Nand(a=a[0], b=selA, out=notAand0);
+    Nand(a=b[0], b=selB, out=notBand0);
+    Nand(a=c[0], b=selC, out=notCand0);
+    Nand(a=d[0], b=selD, out=notDand0);
+    Nand(a=notAand0, b=notAand0, out=Aand0);
+    Nand(a=notBand0, b=notBand0, out=Band0);
+    Nand(a=notCand0, b=notCand0, out=Cand0);
+    Nand(a=notDand0, b=notDand0, out=Dand0);
+    Nand(a=Aand0, b=Band0, out=ABor0);
+    Nand(a=Cand0, b=Dand0, out=CDor0);
+    Nand(a=ABor0, b=CDor0, out=out[0]);
+
+    // Bit 1
+    Nand(a=a[1], b=selA, out=notAand1);
+    Nand(a=b[1], b=selB, out=notBand1);
+    Nand(a=c[1], b=selC, out=notCand1);
+    Nand(a=d[1], b=selD, out=notDand1);
+    Nand(a=notAand1, b=notAand1, out=Aand1);
+    Nand(a=notBand1, b=notBand1, out=Band1);
+    Nand(a=notCand1, b=notCand1, out=Cand1);
+    Nand(a=notDand1, b=notDand1, out=Dand1);
+    Nand(a=Aand1, b=Band1, out=ABor1);
+    Nand(a=Cand1, b=Dand1, out=CDor1);
+    Nand(a=ABor1, b=CDor1, out=out[1]);
+
+    // Bit 2
+    Nand(a=a[2], b=selA, out=notAand2);
+    Nand(a=b[2], b=selB, out=notBand2);
+    Nand(a=c[2], b=selC, out=notCand2);
+    Nand(a=d[2], b=selD, out=notDand2);
+    Nand(a=notAand2, b=notAand2, out=Aand2);
+    Nand(a=notBand2, b=notBand2, out=Band2);
+    Nand(a=notCand2, b=notCand2, out=Cand2);
+    Nand(a=notDand2, b=notDand2, out=Dand2);
+    Nand(a=Aand2, b=Band2, out=ABor2);
+    Nand(a=Cand2, b=Dand2, out=CDor2);
+    Nand(a=ABor2, b=CDor2, out=out[2]);
+
+    // Bit 3
+    Nand(a=a[3], b=selA, out=notAand3);
+    Nand(a=b[3], b=selB, out=notBand3);
+    Nand(a=c[3], b=selC, out=notCand3);
+    Nand(a=d[3], b=selD, out=notDand3);
+    Nand(a=notAand3, b=notAand3, out=Aand3);
+    Nand(a=notBand3, b=notBand3, out=Band3);
+    Nand(a=notCand3, b=notCand3, out=Cand3);
+    Nand(a=notDand3, b=notDand3, out=Dand3);
+    Nand(a=Aand3, b=Band3, out=ABor3);
+    Nand(a=Cand3, b=Dand3, out=CDor3);
+    Nand(a=ABor3, b=CDor3, out=out[3]);
+
+    // Bit 4
+    Nand(a=a[4], b=selA, out=notAand4);
+    Nand(a=b[4], b=selB, out=notBand4);
+    Nand(a=c[4], b=selC, out=notCand4);
+    Nand(a=d[4], b=selD, out=notDand4);
+    Nand(a=notAand4, b=notAand4, out=Aand4);
+    Nand(a=notBand4, b=notBand4, out=Band4);
+    Nand(a=notCand4, b=notCand4, out=Cand4);
+    Nand(a=notDand4, b=notDand4, out=Dand4);
+    Nand(a=Aand4, b=Band4, out=ABor4);
+    Nand(a=Cand4, b=Dand4, out=CDor4);
+    Nand(a=ABor4, b=CDor4, out=out[4]);
+
+    // Bit 5
+    Nand(a=a[5], b=selA, out=notAand5);
+    Nand(a=b[5], b=selB, out=notBand5);
+    Nand(a=c[5], b=selC, out=notCand5);
+    Nand(a=d[5], b=selD, out=notDand5);
+    Nand(a=notAand5, b=notAand5, out=Aand5);
+    Nand(a=notBand5, b=notBand5, out=Band5);
+    Nand(a=notCand5, b=notCand5, out=Cand5);
+    Nand(a=notDand5, b=notDand5, out=Dand5);
+    Nand(a=Aand5, b=Band5, out=ABor5);
+    Nand(a=Cand5, b=Dand5, out=CDor5);
+    Nand(a=ABor5, b=CDor5, out=out[5]);
+
+    // Bit 6
+    Nand(a=a[6], b=selA, out=notAand6);
+    Nand(a=b[6], b=selB, out=notBand6);
+    Nand(a=c[6], b=selC, out=notCand6);
+    Nand(a=d[6], b=selD, out=notDand6);
+    Nand(a=notAand6, b=notAand6, out=Aand6);
+    Nand(a=notBand6, b=notBand6, out=Band6);
+    Nand(a=notCand6, b=notCand6, out=Cand6);
+    Nand(a=notDand6, b=notDand6, out=Dand6);
+    Nand(a=Aand6, b=Band6, out=ABor6);
+    Nand(a=Cand6, b=Dand6, out=CDor6);
+    Nand(a=ABor6, b=CDor6, out=out[6]);
+
+    // Bit 7
+    Nand(a=a[7], b=selA, out=notAand7);
+    Nand(a=b[7], b=selB, out=notBand7);
+    Nand(a=c[7], b=selC, out=notCand7);
+    Nand(a=d[7], b=selD, out=notDand7);
+    Nand(a=notAand7, b=notAand7, out=Aand7);
+    Nand(a=notBand7, b=notBand7, out=Band7);
+    Nand(a=notCand7, b=notCand7, out=Cand7);
+    Nand(a=notDand7, b=notDand7, out=Dand7);
+    Nand(a=Aand7, b=Band7, out=ABor7);
+    Nand(a=Cand7, b=Dand7, out=CDor7);
+    Nand(a=ABor7, b=CDor7, out=out[7]);
+
+    // Bit 8
+    Nand(a=a[8], b=selA, out=notAand8);
+    Nand(a=b[8], b=selB, out=notBand8);
+    Nand(a=c[8], b=selC, out=notCand8);
+    Nand(a=d[8], b=selD, out=notDand8);
+    Nand(a=notAand8, b=notAand8, out=Aand8);
+    Nand(a=notBand8, b=notBand8, out=Band8);
+    Nand(a=notCand8, b=notCand8, out=Cand8);
+    Nand(a=notDand8, b=notDand8, out=Dand8);
+    Nand(a=Aand8, b=Band8, out=ABor8);
+    Nand(a=Cand8, b=Dand8, out=CDor8);
+    Nand(a=ABor8, b=CDor8, out=out[8]);
+
+    // Bit 9
+    Nand(a=a[9], b=selA, out=notAand9);
+    Nand(a=b[9], b=selB, out=notBand9);
+    Nand(a=c[9], b=selC, out=notCand9);
+    Nand(a=d[9], b=selD, out=notDand9);
+    Nand(a=notAand9, b=notAand9, out=Aand9);
+    Nand(a=notBand9, b=notBand9, out=Band9);
+    Nand(a=notCand9, b=notCand9, out=Cand9);
+    Nand(a=notDand9, b=notDand9, out=Dand9);
+    Nand(a=Aand9, b=Band9, out=ABor9);
+    Nand(a=Cand9, b=Dand9, out=CDor9);
+    Nand(a=ABor9, b=CDor9, out=out[9]);
+
+    // Bit 10
+    Nand(a=a[10], b=selA, out=notAand10);
+    Nand(a=b[10], b=selB, out=notBand10);
+    Nand(a=c[10], b=selC, out=notCand10);
+    Nand(a=d[10], b=selD, out=notDand10);
+    Nand(a=notAand10, b=notAand10, out=Aand10);
+    Nand(a=notBand10, b=notBand10, out=Band10);
+    Nand(a=notCand10, b=notCand10, out=Cand10);
+    Nand(a=notDand10, b=notDand10, out=Dand10);
+    Nand(a=Aand10, b=Band10, out=ABor10);
+    Nand(a=Cand10, b=Dand10, out=CDor10);
+    Nand(a=ABor10, b=CDor10, out=out[10]);
+
+    // Bit 11
+    Nand(a=a[11], b=selA, out=notAand11);
+    Nand(a=b[11], b=selB, out=notBand11);
+    Nand(a=c[11], b=selC, out=notCand11);
+    Nand(a=d[11], b=selD, out=notDand11);
+    Nand(a=notAand11, b=notAand11, out=Aand11);
+    Nand(a=notBand11, b=notBand11, out=Band11);
+    Nand(a=notCand11, b=notCand11, out=Cand11);
+    Nand(a=notDand11, b=notDand11, out=Dand11);
+    Nand(a=Aand11, b=Band11, out=ABor11);
+    Nand(a=Cand11, b=Dand11, out=CDor11);
+    Nand(a=ABor11, b=CDor11, out=out[11]);
+
+    // Bit 12
+    Nand(a=a[12], b=selA, out=notAand12);
+    Nand(a=b[12], b=selB, out=notBand12);
+    Nand(a=c[12], b=selC, out=notCand12);
+    Nand(a=d[12], b=selD, out=notDand12);
+    Nand(a=notAand12, b=notAand12, out=Aand12);
+    Nand(a=notBand12, b=notBand12, out=Band12);
+    Nand(a=notCand12, b=notCand12, out=Cand12);
+    Nand(a=notDand12, b=notDand12, out=Dand12);
+    Nand(a=Aand12, b=Band12, out=ABor12);
+    Nand(a=Cand12, b=Dand12, out=CDor12);
+    Nand(a=ABor12, b=CDor12, out=out[12]);
+
+    Nand(a=a[13], b=selA, out=notAand13);
+    Nand(a=b[13], b=selB, out=notBand13);
+    Nand(a=c[13], b=selC, out=notCand13);
+    Nand(a=d[13], b=selD, out=notDand13);
+    Nand(a=notAand13, b=notAand13, out=Aand13);
+    Nand(a=notBand13, b=notBand13, out=Band13);
+    Nand(a=notCand13, b=notCand13, out=Cand13);
+    Nand(a=notDand13, b=notDand13, out=Dand13);
+    Nand(a=Aand13, b=Band13, out=ABor13);
+    Nand(a=Cand13, b=Dand13, out=CDor13);
+    Nand(a=ABor13, b=CDor13, out=out[13]);
+
+    // Bit 14
+    Nand(a=a[14], b=selA, out=notAand14);
+    Nand(a=b[14], b=selB, out=notBand14);
+    Nand(a=c[14], b=selC, out=notCand14);
+    Nand(a=d[14], b=selD, out=notDand14);
+    Nand(a=notAand14, b=notAand14, out=Aand14);
+    Nand(a=notBand14, b=notBand14, out=Band14);
+    Nand(a=notCand14, b=notCand14, out=Cand14);
+    Nand(a=notDand14, b=notDand14, out=Dand14);
+    Nand(a=Aand14, b=Band14, out=ABor14);
+    Nand(a=Cand14, b=Dand14, out=CDor14);
+    Nand(a=ABor14, b=CDor14, out=out[14]);
+
+    // Bit 15
+    Nand(a=a[15], b=selA, out=notAand15);
+    Nand(a=b[15], b=selB, out=notBand15);
+    Nand(a=c[15], b=selC, out=notCand15);
+    Nand(a=d[15], b=selD, out=notDand15);
+    Nand(a=notAand15, b=notAand15, out=Aand15);
+    Nand(a=notBand15, b=notBand15, out=Band15);
+    Nand(a=notCand15, b=notCand15, out=Cand15);
+    Nand(a=notDand15, b=notDand15, out=Dand15);
+    Nand(a=Aand15, b=Band15, out=ABor15);
+    Nand(a=Cand15, b=Dand15, out=CDor15);
+    Nand(a=ABor15, b=CDor15, out=out[15]);
+}
+
+/**
+
 CHIP Mux4Way16 {
     IN a[16], b[16], c[16], d[16], sel[2];
     OUT out[16];
@@ -18,3 +244,5 @@ CHIP Mux4Way16 {
     // Stage 2: Select between the results of stage 1
     Mux16(a=abSelected, b=cdSelected, sel=sel[1], out=out);
 }
+
+*/
