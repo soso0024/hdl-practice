@@ -11,7 +11,27 @@ CHIP DMux4Way {
     OUT a, b, c, d;
 
     PARTS:
-   // Put you code here:
+    // NOT gates
+    Nand(a=sel[0], b=sel[0], out=notSel0);
+    Nand(a=sel[1], b=sel[1], out=notSel1);
+
+    // First level DMux
+    Nand(a=in, b=notSel1, out=temp1);
+    Nand(a=temp1, b=temp1, out=outAB);
+    Nand(a=in, b=sel[1], out=temp2);
+    Nand(a=temp2, b=temp2, out=outCD);
+
+    // Second level DMux for AB
+    Nand(a=outAB, b=notSel0, out=temp3);
+    Nand(a=temp3, b=temp3, out=a);
+    Nand(a=outAB, b=sel[0], out=temp4);
+    Nand(a=temp4, b=temp4, out=b);
+
+    // Second level DMux for CD
+    Nand(a=outCD, b=notSel0, out=temp5);
+    Nand(a=temp5, b=temp5, out=c);
+    Nand(a=outCD, b=sel[0], out=temp6);
+    Nand(a=temp6, b=temp6, out=d);
 }
 
 
