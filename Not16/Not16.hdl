@@ -7,5 +7,5 @@ CHIP Not16 {
     OUT out[16];
 
     PARTS:
-   // Put you code here:
+    Nand16(a=in, b=in, out=out);
 }
