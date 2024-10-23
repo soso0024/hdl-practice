@@ -20,3 +20,5 @@ CHIP Add16 {
     FullAdder(a=a[14], b=b[14], c=w14, sum=out[14], carry=w15);
     FullAdder(a=a[15], b=b[15], c=w15, sum=out[15], carry=w16);
 }
+
+ref: https://people.duke.edu/~nts9/logicgates/Add16.hdl
